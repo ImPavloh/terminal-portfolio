@@ -6,6 +6,6 @@ export default defineConfig({
   output: 'server',
   adapter: vercel({
     functionPerRoute: true,
-    includeFiles: ['./src/utils/**/*'],
+    // includeFiles: ['./src/utils/**/*'],
   }),
 })
