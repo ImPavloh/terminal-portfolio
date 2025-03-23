@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import Terminal from '../components/Terminal.astro'
+import InfoSection from '../components/InfoSection.astro'
+import Footer from '../components/Footer.astro'
+import { terminalRawContent } from '../utils/terminalRenderer.js'
+
+// detecta si la solicitud es desde terminal o no
+const userAgent = Astro.request.headers.get('user-agent') || ''
+const acceptHeader = Astro.request.headers.get('accept') || ''
+const url = new URL(Astro.request.url)
+const formatParam = url.searchParams.get('format')
+
+const isCurl =
+  userAgent.toLowerCase().includes('curl') ||
+  userAgent.toLowerCase().includes('wget') ||
+  acceptHeader === '*/*' ||
+  formatParam === 'terminal'
+
+// texto plano para solicitudes desde terminal
+if (isCurl || formatParam === 'terminal') {
+  return new Response(terminalRawContent, {
+    status: 200,
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'public, max-age=14400',
+      'X-Powered-By': 'Pavloh Terminal Portfolio',
+    },
+  })
+}
+
+const pageTitle = 'Pavloh | Portfolio en terminal'
+---
+
+<Layout title={pageTitle}>
+  <div class="page-container">
+    <Header />
+
+    <main class="main-content">
+      <Terminal />
+      <InfoSection />
+    </main>
+
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+  .page-container {
+    height: 100vh;
+    max-width: 850px;
+    padding: 20px;
+    margin: 0 auto;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  @media (max-width: 768px) {
+    .page-container {
+      padding: 14px;
+    }
+  }
+</style>

@@ -1,0 +1,262 @@
+---
+const taglines = [
+  'Porque abrir Chrome es demasiado mainstream',
+  'Aprobado por 9 de cada 10 sysadmins',
+  'El minimalismo llevado al extremo',
+  '¿Quién necesita Figma cuando tienes Bash?',
+  'Sin CSS, sin JS, sin problemas',
+  'No necesitas una RTX para ver esto',
+  'No tiene IA, pero sí mucha actitud',
+  'Este portfolio no trackea nada (no sabe cómo)',
+  'Soy frontend, pero esto es 100% backend',
+  '404: Diseño no encontrado',
+  'Sin loaders, sin spinners, solo contenido',
+  'Si esto fuera más minimalista, ni existiría',
+]
+---
+
+<header>
+  <div class="branding">
+    <div class="logo-container">
+      <svg
+        class="terminal-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"><path d="m4 17 6-6-6-6m8 14h8"></path></svg
+      >
+      <h1 class="site-title">Portfolio en terminal</h1>
+    </div>
+    <p class="site-tagline" id="rotating-tagline">
+      Porque abrir Chrome es demasiado mainstream
+    </p>
+  </div>
+
+  <div class="header-actions">
+    <button id="shareButton" class="share-button" aria-label="Compartir">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="18"
+        height="18"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"
+        ></circle><circle cx="18" cy="19" r="3"></circle><path
+          d="m8.59 13.51 6.83 3.98m-.01-10.98-6.82 3.98"></path></svg
+      >
+      <span>Compartir</span>
+    </button>
+    <a
+      href="https://github.com/impavloh/terminal-portfolio"
+      id="sourceButton"
+      class="source-button"
+      aria-label="Ver repositorio"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="18"
+        height="18"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><path
+          d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.4 13.4 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+        ></path></svg
+      >
+      <span>Repositorio</span>
+    </a>
+  </div>
+</header>
+
+<script define:vars={{ taglines }}>
+  // funcionalidad para compartir
+  document.addEventListener('DOMContentLoaded', () => {
+    const shareButton = document.getElementById('shareButton')
+
+    if (shareButton && navigator.share) {
+      shareButton.addEventListener('click', async () => {
+        try {
+          await navigator.share({
+            title: 'Portfolio en Terminal de Pavloh',
+            text: 'Echa un vistazo a este portfolio en formato terminal',
+            url: window.location.href,
+          })
+        } catch (err) {
+          console.log('Error al compartir:', err)
+        }
+      })
+    } else if (shareButton) {
+      // copiar enlace al portapapeles si no se puede compartir
+      shareButton.addEventListener('click', () => {
+        const tempInput = document.createElement('input')
+        tempInput.value = window.location.href
+        document.body.appendChild(tempInput)
+        tempInput.select()
+        document.execCommand('copy')
+        document.body.removeChild(tempInput)
+
+        const span = shareButton.querySelector('span')
+        if (span) {
+          const originalText = span.textContent || ''
+          span.textContent = '¡Enlace copiado!'
+
+          setTimeout(() => {
+            span.textContent = originalText
+          }, 2000)
+        }
+      })
+    }
+
+    // rotar taglines cada 5seg
+    const taglineElement = document.getElementById('rotating-tagline')
+    if (taglineElement) {
+      let currentIndex = 0
+
+      function updateTagline() {
+        taglineElement.style.opacity = 0
+
+        setTimeout(() => {
+          currentIndex = (currentIndex + 1) % taglines.length
+          taglineElement.textContent = taglines[currentIndex]
+
+          taglineElement.style.opacity = 1
+        }, 500)
+      }
+
+      setInterval(updateTagline, 5000)
+    }
+  })
+</script>
+
+<style>
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .branding {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 80%;
+  }
+
+  .branding .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .terminal-logo {
+    color: var(--primary-color, #58a6ff);
+  }
+
+  .site-title {
+    font-size: 1.75rem;
+    background: linear-gradient(
+      90deg,
+      var(--primary-color, #58a6ff),
+      var(--accent-color, #79c0ff)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+  .site-tagline {
+    font-size: 1rem;
+    color: var(--text-secondary, #8b949e);
+    transition: opacity 0.5s ease;
+  }
+
+  .header-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .share-button,
+  .source-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(88, 166, 255, 0.1);
+    border: 1px solid rgba(88, 166, 255, 0.2);
+    color: var(--primary-color, #58a6ff);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    font-size: 0.9rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .share-button span,
+  .source-button span {
+    font-size: 0.9rem;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .share-button svg,
+  .source-button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .share-button:hover,
+  .source-button:hover {
+    background-color: rgba(88, 166, 255, 0.2);
+    border-color: rgba(88, 166, 255, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    header {
+      padding: 0.2rem 0;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .terminal-logo {
+      display: none;
+    }
+
+    .branding {
+      width: 100%;
+    }
+
+    .header-actions {
+      width: 100%;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .site-title {
+      font-size: 1.5rem;
+    }
+  }
+</style>

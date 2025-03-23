@@ -1,0 +1,41 @@
+<footer>
+  <a href="https://pavloh.com">Ver portfolio completo</a>
+  <p>
+    Hecho con <span>&lt;3</span> y <span>Astro</span>
+  </p>
+</footer>
+
+<style>
+  footer {
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: auto;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+  }
+
+  a {
+    color: var(--primary-color, #58a6ff);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  a:hover {
+    opacity: 0.8;
+  }
+
+  p {
+    margin-top: 0.5rem;
+  }
+
+  span {
+    color: #e25555;
+    animation: pulse 1.5s infinite;
+  }
+
+  @media screen and (max-width: 768px) {
+    footer {
+      padding: 0.2rem 0;
+    }
+  }
+</style>

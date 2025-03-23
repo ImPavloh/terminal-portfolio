@@ -1,0 +1,273 @@
+<div class="info-section">
+  <div class="info-header">
+    <div class="info-icon">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="4 17 10 11 4 5"></polyline>
+        <line x1="12" y1="19" x2="20" y2="19"></line>
+      </svg>
+    </div>
+    <h2 class="info-title">Accede a mi portfolio <span>en terminal</span></h2>
+  </div>
+
+  <div class="info-content">
+    <p class="info-description">
+      Para ver la versión completa del portfolio en terminal, ejecuta el
+      comando:
+    </p>
+
+    <div class="command-container" id="commandContainer">
+      <div class="command-prompt">
+        <span class="prompt-symbol">$</span>
+      </div>
+      <div class="command-text" id="commandText">
+        curl https://sh.pavloh.com
+      </div>
+      <button class="copy-btn" id="copyBtn" aria-label="Copiar comando">
+        <span class="copy-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+            ></path>
+          </svg>
+        </span>
+        <span class="copy-text">Copiar</span>
+        <span class="copied-text">¡Copiado!</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const copyBtn = document.getElementById('copyBtn')
+    const commandText = document.getElementById('commandText')
+    const commandContainer = document.getElementById('commandContainer')
+
+    if (copyBtn && commandText && commandContainer) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard
+          .writeText(
+            commandText.textContent?.trim() || 'curl https://sh.pavloh.com',
+          )
+          .then(() => {
+            copyBtn.classList.add('copied')
+            commandContainer.classList.add('copied')
+
+            setTimeout(() => {
+              copyBtn.classList.remove('copied')
+              commandContainer.classList.remove('copied')
+            }, 2000)
+          })
+          .catch((err) => {
+            console.error('Error al copiar el texto: ', err)
+          })
+      })
+
+      // seleccionar todo el texto al hacer clic en el comando
+      commandText.addEventListener('click', () => {
+        const selection = window.getSelection()
+        if (selection) {
+          const range = document.createRange()
+          range.selectNodeContents(commandText)
+          selection.removeAllRanges()
+          selection.addRange(range)
+        }
+      })
+    }
+  })
+</script>
+
+<style>
+  .info-section {
+    background-color: rgba(88, 166, 255, 0.08);
+    border: 1px solid var(--border-color, #30363d);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .info-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    gap: 0.75rem;
+  }
+
+  .info-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color, #58a6ff);
+    background-color: rgba(88, 166, 255, 0.1);
+    border-radius: 50%;
+    padding: 0.75rem;
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .info-title {
+    font-size: 1.5rem;
+    color: var(--primary-color, #58a6ff);
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .info-description {
+    color: var(--text-color, #c9d1d9);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .command-container {
+    display: flex;
+    align-items: stretch;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(88, 166, 255, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  .command-container:hover {
+    border-color: rgba(88, 166, 255, 0.4);
+    box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.1);
+  }
+
+  .command-container.copied {
+    border-color: rgba(46, 204, 112, 0.2);
+    box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.1);
+  }
+
+  .command-prompt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(88, 166, 255, 0.2);
+    padding: 0 0.75rem;
+    color: var(--primary-color, #58a6ff);
+    font-weight: bold;
+    user-select: none;
+  }
+
+  .command-text {
+    flex-grow: 1;
+    padding: 0.875rem 1rem;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    color: var(--text-color, #c9d1d9);
+    overflow-x: auto;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .command-text::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .command-text::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .command-text::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+  }
+
+  .copy-btn {
+    display: flex;
+    align-items: center;
+    background-color: rgba(88, 166, 255, 0.1);
+    border: none;
+    color: var(--primary-color, #58a6ff);
+    cursor: pointer;
+    padding: 0 1rem;
+    transition: all 0.2s;
+    font-size: 0.875rem;
+    gap: 0.5rem;
+  }
+
+  .copy-btn:hover {
+    background-color: rgba(88, 166, 255, 0.2);
+  }
+
+  .copy-btn:active:not(.copied) {
+    opacity: 0.8;
+  }
+
+  .copy-btn.copied {
+    background-color: rgba(39, 174, 96, 0.2);
+    color: #2ecc71;
+  }
+
+  .copy-icon {
+    display: flex;
+    align-items: center;
+  }
+
+  .copy-btn.copied .copy-text,
+  .copy-btn:not(.copied) .copied-text {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .info-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .info-icon {
+      display: none;
+    }
+
+    .info-title {
+      font-size: 1.3rem;
+    }
+
+    .info-title span {
+      display: none;
+    }
+
+    .command-container {
+      flex-direction: column;
+    }
+
+    .command-prompt {
+      display: none;
+    }
+
+    .command-text {
+      border-top: 4px solid rgba(88, 166, 255, 0.2);
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .copy-btn {
+      padding: 0.75rem;
+      justify-content: center;
+    }
+  }
+</style>

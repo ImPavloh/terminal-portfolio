@@ -1,0 +1,38 @@
+# Build output
+dist/
+.output/
+.vercel/
+
+# Dependencies
+node_modules/
+bun.lockb
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+bun-debug.log*
+
+# Editor-specific files
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.vercel/env.json
+
+# Bun cache
+.bun/
+
+# Astro-specific files
+.astro/
+.cache/

@@ -1,0 +1,19 @@
+{
+    "name": "terminal-portfolio",
+    "version": "1.0.1",
+    "description": "Versión terminal/web del portfolio de Pavloh",
+    "author": "Pavloh",
+    "type": "module",
+    "private": true,
+    "scripts": {
+      "dev": "astro dev",
+      "start": "astro dev",
+      "build": "astro build",
+      "preview": "astro preview",
+      "astro": "astro"
+    },
+    "dependencies": {
+      "astro": "^5.5.4",
+      "@astrojs/vercel": "^8.1.2"
+    }
+}
