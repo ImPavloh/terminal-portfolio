@@ -13,10 +13,14 @@ const url = new URL(Astro.request.url)
 const formatParam = url.searchParams.get('format')
 
 const isCurl =
-  userAgent.toLowerCase().includes('curl') ||
-  userAgent.toLowerCase().includes('wget') ||
-  acceptHeader === '*/*' ||
+  (userAgent.toLowerCase().includes('curl') &&
+    !userAgent.toLowerCase().includes('mozilla')) ||
+  (userAgent.toLowerCase().includes('wget') &&
+    !userAgent.toLowerCase().includes('mozilla')) ||
+  (acceptHeader === '*/*' && !userAgent.toLowerCase().includes('mozilla')) ||
   formatParam === 'terminal'
+
+// console.log(`UA: ${userAgent}, Accept: ${acceptHeader}, Format: ${formatParam}`)
 
 // texto plano para solicitudes desde terminal
 if (isCurl || formatParam === 'terminal') {

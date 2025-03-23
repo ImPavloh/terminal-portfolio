@@ -19,7 +19,7 @@ ${colors.bold}${colors.blue}Proyectos destacados:${colors.reset}
  ${colors.green}>> Portfolio en terminal (2025)${colors.reset} - Portfolio accesible desde la terminal y web simultáneamente.
      ${colors.gray}Tech: Astro, JavaScript${colors.reset}
      ${colors.gray}URL: curl https://sh.pavloh.com  ${colors.reset}
-     ${colors.gray}Web: https://sh.pavloh.com${colors.reset}
+     ${colors.gray}Web: https://cli.pavloh.com${colors.reset}
 
  ${colors.green}>> Recycled J (2025)${colors.reset} - Sitio no oficial con discografía, conciertos y merchandising.
      ${colors.gray}Tech: NextJS, Tailwind CSS, Spotify API${colors.reset}
@@ -85,5 +85,5 @@ ${colors.bold}${colors.blue}Contacto:${colors.reset}
 ${colors.bold}${colors.brightBlue}¡Gracias por visitar mi portfolio en terminal!${colors.reset}
 Para ver mi portfolio completo visita: ${colors.underline}${colors.cyan}https://pavloh.com${colors.reset}
 
-${colors.gray}# Visita la versión web de: ${colors.reset}${colors.cyan}https://sh.pavloh.com${colors.reset}
+${colors.gray}# Visita la versión web de: ${colors.reset}${colors.cyan}https://cli.pavloh.com${colors.reset}
 `
