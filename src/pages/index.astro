@@ -15,7 +15,7 @@ const formatParam = url.searchParams.get('format')
 const isCurl =
   (userAgent.includes('curl') &&
     !userAgent.includes('mozilla')) ||
-  (userAgent..includes('wget') &&
+  (userAgent.includes('wget') &&
     !userAgent.includes('mozilla')) ||
   (acceptHeader === '*/*' && !userAgent.includes('mozilla')) ||
   formatParam === 'terminal'
