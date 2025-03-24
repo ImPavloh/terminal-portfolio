@@ -78,9 +78,9 @@ ${colors.bold}${colors.blue}Logros:${colors.reset}
 ${colors.bold}${colors.blue}Contacto:${colors.reset}
   ${colors.yellow}Email:${colors.reset}    impavloh@gmail.com
   ${colors.yellow}Web:${colors.reset}      https://pavloh.com
-  ${colors.yellow}GitHub:${colors.reset}   https://github.com/pavloh
-  ${colors.yellow}LinkedIn:${colors.reset} https://linkedin.com/in/pavloh
-  ${colors.yellow}Twitter:${colors.reset}  https://twitter.com/pavloh
+  ${colors.yellow}GitHub:${colors.reset}   https://github.com/impavloh
+  ${colors.yellow}LinkedIn:${colors.reset} https://linkedin.com/in/impavloh
+  ${colors.yellow}Twitter:${colors.reset}  https://twitter.com/impavloh
 
 ${colors.bold}${colors.brightBlue}¡Gracias por visitar mi portfolio en terminal!${colors.reset}
 Para ver mi portfolio completo visita: ${colors.underline}${colors.cyan}https://pavloh.com${colors.reset}

@@ -7,29 +7,30 @@ import Footer from '../components/Footer.astro'
 import { terminalRawContent } from '../utils/terminalRenderer.js'
 
 // detecta si la solicitud es desde terminal o no
-const userAgent = Astro.request.headers.get('user-agent') || ''
+const userAgent = Astro.request.headers.get('user-agent')?.toLowerCase() || ''
 const acceptHeader = Astro.request.headers.get('accept') || ''
 const url = new URL(Astro.request.url)
 const formatParam = url.searchParams.get('format')
 
 const isCurl =
-  (userAgent.toLowerCase().includes('curl') &&
-    !userAgent.toLowerCase().includes('mozilla')) ||
-  (userAgent.toLowerCase().includes('wget') &&
-    !userAgent.toLowerCase().includes('mozilla')) ||
-  (acceptHeader === '*/*' && !userAgent.toLowerCase().includes('mozilla')) ||
+  (userAgent.includes('curl') &&
+    !userAgent.includes('mozilla')) ||
+  (userAgent..includes('wget') &&
+    !userAgent.includes('mozilla')) ||
+  (acceptHeader === '*/*' && !userAgent.includes('mozilla')) ||
   formatParam === 'terminal'
 
 // console.log(`UA: ${userAgent}, Accept: ${acceptHeader}, Format: ${formatParam}`)
 
 // texto plano para solicitudes desde terminal
-if (isCurl || formatParam === 'terminal') {
+if (isCurl) {
   return new Response(terminalRawContent, {
     status: 200,
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
-      'Cache-Control': 'public, max-age=14400',
-      'X-Powered-By': 'Pavloh Terminal Portfolio',
+      'Cache-Control': 'no-store, max-age=0', // public, max-age=14400
+      'Vary': 'User-Agent, Accept',
+      'X-Powered-By': 'Pavloh portfolio terminal',
     },
   })
 }

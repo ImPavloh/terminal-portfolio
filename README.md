@@ -6,7 +6,7 @@
 
 Mi portfolio personal accesible desde la terminal, con un diseño minimalista y una experiencia de usuario al estilo CLI. Una alternativa elegante para mostrar mi trabajo a través de una interfaz que evoca nostalgia y eficiencia.
 
-**Accede a través de:** [https://sh.pavloh.com](https://sh.pavloh.com)  
+**Accede a través de:** [https://cli.pavloh.com](https://cli.pavloh.com)  
 **O directamente desde tu terminal con:** `curl https://sh.pavloh.com`
 
 Mi portfolio web completo está disponible en: [https://pavloh.com](https://pavloh.com)
@@ -24,7 +24,7 @@ Mi portfolio web completo está disponible en: [https://pavloh.com](https://pavl
 curl https://sh.pavloh.com
 
 # O visita la versión web
-# https://sh.pavloh.com
+# https://cli.pavloh.com
 
 ```
 
@@ -79,12 +79,13 @@ La terminal representa la herramienta más pura de interacción con la tecnolog�
 
 ## 🔗 Enlaces alternativos
 
-También puedes acceder a la web través de estos dominios:
+También puedes utilizar estos dominios:
 
 - [https://ps1.pavloh.com](https://ps1.pavloh.com)
 - [https://bash.pavloh.com](https://bash.pavloh.com)
 - [https://bat.pavloh.com](https://bat.pavloh.com)
 - [https://cli.pavloh.com](https://cli.pavloh.com)
+- [https://sh.pavloh.com](https://sh.pavloh.com)
 - [https://terminal.pavloh.com](https://terminal.pavloh.com)
 
 ## 📜 Licencia
